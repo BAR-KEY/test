@@ -10,9 +10,11 @@ class Timer extends StatefulWidget {
 class _TimerState extends State<Timer> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-      title: const Text('Timer'),
-    ));
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+        title: const Text('Timer'),
+      )),
+    );
   }
 }
