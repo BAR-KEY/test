@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test/config/palette.dart';
 import 'package:test/pages/todo.dart';
 import '/pages/timer.dart';
+import '/pages/stream.dart';
 import '/config/style.dart' as style;
 
 void main() {
@@ -58,6 +59,12 @@ class MyApp extends StatelessWidget {
           ],
         ),
       ),
+      body: TextButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (conetxt) => const Stream()));
+          },
+          child: const Text('Stream')),
     );
   }
 }
