@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:test/config/palette.dart';
+import 'package:test/pages/bloc/bloc.dart';
+import 'package:test/pages/provider/count_provider.dart';
+import 'package:test/pages/provider/provider_home.dart';
 import 'package:test/pages/todo.dart';
 import '/pages/timer.dart';
 import '/pages/stream.dart';
 import '/config/style.dart' as style;
 
 void main() {
-  runApp(MaterialApp(
-      title: 'flutter portfolio', theme: style.theme, home: const MyApp()));
+  runApp(ChangeNotifierProvider(
+    create: (BuildContext context) => CountProvider(),
+    child: MaterialApp(
+        title: 'flutter portfolio', theme: style.theme, home: const MyApp()),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -59,12 +66,28 @@ class MyApp extends StatelessWidget {
           ],
         ),
       ),
-      body: TextButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (conetxt) => const Stream()));
-          },
-          child: const Text('Stream')),
+      body: Column(
+        children: [
+          TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (conetxt) => const Stream()));
+              },
+              child: const Text('Stream')),
+          TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (conetxt) => const Bloc()));
+              },
+              child: const Text('BLOC 패턴')),
+          TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (conetxt) => ProviderHome()));
+              },
+              child: const Text('Provider')),
+        ],
+      ),
     );
   }
 }
