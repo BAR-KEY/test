@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test/config/palette.dart';
 import 'package:test/pages/bloc/bloc.dart';
+import 'package:test/pages/provider/bottom_navigation_provider.dart';
 import 'package:test/pages/provider/count_provider.dart';
 import 'package:test/pages/provider/provider_home.dart';
 import 'package:test/pages/todo.dart';
@@ -10,8 +11,15 @@ import '/pages/stream.dart';
 import '/config/style.dart' as style;
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (BuildContext context) => CountProvider(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (BuildContext context) => CountProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (BuildContext context) => BottonNavigationProvider(),
+      )
+    ],
     child: MaterialApp(
         title: 'flutter portfolio', theme: style.theme, home: const MyApp()),
   ));
@@ -82,8 +90,10 @@ class MyApp extends StatelessWidget {
               child: const Text('BLOC 패턴')),
           TextButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (conetxt) => ProviderHome()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (conetxt) => const ProviderHome()));
               },
               child: const Text('Provider')),
         ],
